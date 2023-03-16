@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
-import java.util.Iterator;
 
 public class ReadFiles {
     public static void main(String[] args) {
@@ -42,6 +41,14 @@ public class ReadFiles {
         Iterable<Path> rootPaths = FileSystems.getDefault().getRootDirectories();
         for(Path path : rootPaths){
             System.out.println(path);
+        }
+        System.out.println("--------Walking tree for dir 2 ------------");
+        Path dir2Path = FileSystems.getDefault().getPath("Examples" + File.separator + "Dir2" );
+        try{
+            Files.walkFileTree(dir2Path, new PrintNames());
+
+        }catch(IOException e){
+            System.out.println(e.getMessage());
         }
     }
 }
